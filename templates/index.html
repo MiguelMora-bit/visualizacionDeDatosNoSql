@@ -1,0 +1,41 @@
+{% with messages = get_flashed_messages()  %}
+{% if messages %}
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<form action ="/add_materia" method = "POST">
+    
+ <input type= "text" name= "nombre" placeholder="nombre">
+ <input type= "text" name= "calificacion" placeholder="calificacion">
+ <input type= "text" name= "estatus" placeholder="estatus">
+<button type = "submit">
+    Guardar
+</button>
+ 
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <td>Materia</td>
+            <td>Calificacion</td>
+            <td>Estatus</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for materia in materias %}
+        <tr>
+            <td>{{ materia.1 }} </td>
+            <td>{{ materia.2 }} </td>
+            <td>{{ materia.3 }} </td>
+            <td>
+                <a href= "/edit/{{materia.1}}">Editar</a>
+                <a href= "/delete/{{materia.1}}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
